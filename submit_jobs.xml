@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<job  minFilesPerProcess="30" maxFilesPerProcess="60" fileListSyntax="xrootd" simulateSubmission="false">
+
+	<shell>singularity exec -e -B /direct -B /star -B /afs -B /gpfs -B /sdcc/lustre02 /cvmfs/star.sdcc.bnl.gov/containers/rhic_sl7.sif</shell>
+
+	<command>
+		root4star -q -b ./femtoDst_maker.C\(\"$FILELIST\",\"Femto_UPC_$JOBID.root\", \"runnumber_list.list\"\)
+	</command>
+
+	<stdout URL="file:/Change/this/for/your/path/log/$JOBID.out" />
+	<stderr URL="file:/Change/this/for/your/path/err/$JOBID.err" />
+	<input URL="filelist:./list/list.list"/>
+	<output fromScratch="*.root" toURL="file:/Change/this/for/your/path/outAnaTree_RP_Info/" />
+
+	<SandBox>
+		<Package>
+		<File>file:./femtoDst_maker.C</File>
+		<File>file:./.sl73_gcc485</File>
+		<File>file:./StRoot</File>
+		<File>file:./runnumber_list.list</File>
+		<File>file:./load.C</File>
+		</Package> 
+	</SandBox>
+
+	<Generator> 
+		<Location>/Change/this/for/your/path/report/</Location> 
+		<ScriptLocation>/Change/this/for/your/path/csh/</ScriptLocation>
+		<ListLocation>/Change/this/for/your/path/list/</ListLocation>
+	</Generator> 
+</job>

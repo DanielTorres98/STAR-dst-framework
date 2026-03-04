@@ -1,0 +1,17 @@
+*.list
+*.root
+*.so
+*.o
+*.d
+*.log
+
+.sl*/
+.al*/
+obj/
+**/*.sl*/
+**/*.al*/
+**/obj/
+obj/
+
+*.consign
+*.nsf*
